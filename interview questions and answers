@@ -1,0 +1,72 @@
+ DevOps Interview Q&A (Quick Summary)
+✅ 1. What is CI/CD?
+CI/CD stands for Continuous Integration and Continuous Deployment.
+It is the practice of:
+
+CI: Automatically integrating and testing code changes regularly.
+
+CD: Automatically deploying validated builds to production or staging environments.
+
+✅ Purpose: Faster releases, fewer bugs, and automated delivery pipelines.
+
+✅ 2. What are GitHub Actions?
+GitHub Actions is a native CI/CD tool within GitHub that lets you automate workflows (like test, build, deploy) using YAML files.
+You define workflows in .github/workflows/ and trigger them on events such as push, pull_request, etc.
+
+✅ No extra setup needed — it runs directly in your GitHub repo.
+
+✅ 3. What are Runners?
+Runners are virtual machines or containers that execute the jobs defined in your GitHub Actions workflow.
+
+GitHub-hosted runners: Provided and maintained by GitHub (like Ubuntu, Windows).
+
+Self-hosted runners: You can host your own for custom environments.
+
+✅ Think of runners as the engine that runs each job.
+
+✅ 4. Jobs vs Steps
+Component	Description
+Jobs	A group of steps executed on the same runner. Jobs can run in parallel or sequentially (if defined).
+Steps	Individual tasks (e.g., install dependencies, run tests) executed inside a job in order.
+
+✅ Jobs = High-level phases
+✅ Steps = Commands within a phase
+
+✅ 5. What are Secrets in GitHub Actions?
+Secrets are encrypted environment variables used to securely store credentials (like DockerHub passwords, API tokens, etc.).
+
+You can add them from:
+GitHub Repo → Settings → Secrets and variables → Actions
+
+Then access them in workflows like:
+
+yaml
+Copy
+Edit
+${{ secrets.SECRET_NAME }}
+✅ Keeps sensitive data secure and out of code.
+
+✅ 6. Docker Build-Push Workflow
+Typical 3-step process to deploy Dockerized apps:
+
+docker build -t username/image-name .
+
+docker login -u username -p password
+
+docker push username/image-name
+
+In GitHub Actions, this is automated via workflow steps.
+
+✅ Ensures the latest app version is packaged and available for deployment.
+
+✅ 7. How to Test CI/CD Pipelines Locally?
+Use act — a tool to run GitHub Actions locally.
+
+Steps:
+
+bash
+Copy
+Edit
+brew install act   # or use release binaries
+act                # runs your workflow locally
+✅ Great for debugging workflows before pushing to GitHub.
