@@ -1,12 +1,20 @@
-<<<<<<< HEAD
-FROM node:latest
-COPY . .
+# Use official Node.js base image
+FROM node:18
+
+# Set working directory
+WORKDIR /app
+
+# Copy dependency definitions
+COPY package*.json ./
+
+# Install dependencies
 RUN npm install
-EXPOSE 5000
-=======
-FROM node:latest
+
+# Copy app source code
 COPY . .
-RUN npm install
+
+# Expose the app port
 EXPOSE 5000
->>>>>>> 79b05f608ddbbc52e74165c29768ccb76cf0dca9
+
+# Start the app
 CMD ["node", "index.js"]
