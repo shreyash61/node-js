@@ -1,0 +1,110 @@
+# 🚀 Node.js CI/CD Pipeline with GitHub Actions & Docker
+
+This project demonstrates a complete **CI/CD pipeline** to automate the build, test, and Docker deployment of a Node.js application using **GitHub Actions**.
+
+> 🔧 Internship Task 1 - DevOps (Top 1% Performer Submission)
+
+---
+
+## 📌 Project Overview
+
+- 🎯 **Goal**: Automate code deployment using GitHub Actions, Docker, and DockerHub.
+- 🔄 **Trigger**: On every push to `main` branch.
+- 🐳 **Deployment**: Docker image built & pushed to DockerHub.
+
+---
+
+## 🛠️ Tech Stack
+
+| Tool         | Purpose                         |
+|--------------|---------------------------------|
+| Node.js      | Backend Web Application         |
+| Docker       | Containerization                |
+| GitHub Actions | CI/CD Automation Workflow     |
+| DockerHub    | Hosting Docker Images           |
+
+---
+
+## 📁 Project Structure
+
+.
+├── Dockerfile
+├── .github
+│ └── workflows
+│ └── main.yml <-- CI/CD pipeline
+├── index.js
+├── package.json
+└── README.md
+
+yaml
+Copy code
+
+---
+
+## ⚙️ CI/CD Workflow (GitHub Actions)
+
+### 🔄 Triggered on:
+```yaml
+on:
+  push:
+    branches:
+      - main
+🧱 Steps Performed:
+Checkout Code
+
+Set up Node.js (v18)
+
+Install Dependencies
+
+Run Tests (if present)
+
+Build Docker Image
+
+Login to DockerHub
+
+Push Image to DockerHub
+
+🐳 Docker Build & Push
+Dockerfile Overview:
+Dockerfile
+Copy code
+FROM node:18
+WORKDIR /app
+COPY . .
+RUN npm install
+CMD ["npm", "start"]
+EXPOSE 3000
+Commands Used:
+bash
+Copy code
+docker build -t yourdockerhubusername/node-js .
+docker push yourdockerhubusername/node-js
+📦 How to Run Locally
+bash
+Copy code
+# Clone the repo
+git clone https://github.com/shreyash61/node-js
+
+# Navigate to the directory
+cd node-js
+
+# Install dependencies
+npm install
+
+# Start the app
+npm start
+Access the app at http://localhost:3000
+
+✅ Secrets Used in GitHub Actions
+Secret Name	Description
+DOCKER_USERNAME	Your DockerHub username
+DOCKER_PASSWORD	DockerHub access token
+
+🎯 Key Learnings
+Setting up end-to-end CI/CD using GitHub Actions
+
+Securing deployments with encrypted secrets
+
+Dockerizing and pushing Node.js apps to DockerHub
+
+Writing clean, modular workflows using YAML
